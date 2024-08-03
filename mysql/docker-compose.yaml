@@ -2,7 +2,7 @@ version: '3.1'
   
 services:  
   mysql:  
-    image: mysql:${MYSQL_VERSION:-8.0.39} 
+    image: ${MYSQL_IMAGE:-mysql:8.0.39} 
     restart: always  
     environment:  
       MYSQL_USER: ${MYSQL_USER:-mysql}  
@@ -11,3 +11,5 @@ services:
       TZ: ${MYSQL_TZ:-UTC}
     ports:  
       - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - "${MYSQL_DATA_PATH:-./mysql}:/var/lib/mysql"
